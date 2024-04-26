@@ -8,10 +8,9 @@
 // Execute `rustlings hint modules3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 // TODO: Complete this use statement
-use ???
+use std::time::{SystemTime, UNIX_EPOCH};
 
 fn main() {
     match SystemTime::now().duration_since(UNIX_EPOCH) {
@@ -19,3 +18,5 @@ fn main() {
         Err(_) => panic!("SystemTime before UNIX EPOCH!"),
     }
 }
+
+// Pour importer plusieurs modules venant du même module, je les ai importes en une seule ligne en utilisant les accolades.
