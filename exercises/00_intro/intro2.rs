@@ -5,8 +5,9 @@
 // Execute `rustlings hint intro2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 fn main() {
-    printline!("Hello there!")
+    println!("Hello there!")
 }
+
+// Erreur de syntaxe pour la fonction printline! qui doit s'écrire println!
