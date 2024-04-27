@@ -54,6 +54,8 @@ impl State {
         }
     }
 }
+
+// ! Writeup !
 // Dans enum Message il manquait les paramètres, alors j'ai défini ChangeColor, Echo, Move et Quit pour la structure State
 // Dans process j'ai fait un match pour pouvoir traiter les différents messages
 // change_color est une fonction qui prend un tuple alors j'ai mis une double parenthèse

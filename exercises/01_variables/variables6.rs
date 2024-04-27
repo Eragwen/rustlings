@@ -9,4 +9,5 @@ fn main() {
     println!("Number {}", NUMBER);
 }
 
+// ! Writeup !
 // C'est une constante alors il faut lui ajouter un type en Rust

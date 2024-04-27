@@ -26,5 +26,6 @@ fn string_uppercase(mut data: String) {
     println!("{}", data);
 }
 
+// ! Writeup !
 // J'ajoute ".clone()" à data pour que la fonction get_char ne prenne pas en ownership data
 // J'enlève "&" à data pour que la fonction string_uppercase prenne en ownership data

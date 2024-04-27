@@ -10,4 +10,5 @@ fn main() {
     println!("Hello there!")
 }
 
+// ! Writeup !
 // Erreur de syntaxe pour la fonction printline! qui doit s'écrire println!

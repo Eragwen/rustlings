@@ -17,5 +17,6 @@ fn indexing_tuple() {
         "This is not the 2nd number in the tuple!")
 }
 
+// ! Writeup !
 // Pour parcourir le tableau et attribuer une valeur à une variable, j'utilise la variable qui contient le tableau
 // Et j'ajoute l'index de l'entier voulu

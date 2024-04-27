@@ -28,6 +28,7 @@ fn main() {
     string("mY sHiFt KeY iS sTiCkY".to_lowercase());
 }
 
+// ! Writeup !
 // Pour "blue", type &str donc on utilise string_slice car c'est une chaine littérale
 // Pour "red", type String donc on utilise string car c'est une chaine allouée grâce à to_string()
 // Pour "hi", type String donc on utilise string car c'est une chaine allouée grâce à String::from()

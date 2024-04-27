@@ -54,4 +54,5 @@ mod tests {
     }
 }
 
+// ! Writeup !
 // Formaliser tous les chiffres entier et pas flottant, remplacer "Unknown" par un entier car animal à le type "str" en spécifié

@@ -39,6 +39,7 @@ impl Package {
     }
 }
 
+// ! Writeup !
 // Pour "is_international", on compare les deux pays pour savoir si la livraison est internationale ou non
 // Pour "get_fees", on va multiplier le poids du colis par le prix/gramme pour obtenir le prix total de la livraison
 

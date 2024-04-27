@@ -11,7 +11,6 @@
 // Execute `rustlings hint iterators5` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 use std::collections::HashMap;
 
@@ -35,7 +34,7 @@ fn count_for(map: &HashMap<String, Progress>, value: Progress) -> usize {
 fn count_iterator(map: &HashMap<String, Progress>, value: Progress) -> usize {
     // map is a hashmap with String keys and Progress values.
     // map = { "variables1": Complete, "from_str": None, ... }
-    todo!();
+    map.values().filter(|&&val| val == value).count()
 }
 
 fn count_collection_for(collection: &[HashMap<String, Progress>], value: Progress) -> usize {
@@ -54,8 +53,21 @@ fn count_collection_iterator(collection: &[HashMap<String, Progress>], value: Pr
     // collection is a slice of hashmaps.
     // collection = [{ "variables1": Complete, "from_str": None, ... },
     //     { "variables2": Complete, ... }, ... ]
-    todo!();
+    collection.iter().flat_map(|map| map.values()).filter(|&&val| val == value).count()
 }
+
+// ! Writeup ! 
+// - count_iterator prends un HashMap et un Progress et doit retourner le Progess
+// pour cela on utilise la méthode values() qui retourne un iterateur sur les valeurs du HashMap
+// on utilise ensuite filter pour filtrer les valeurs qui sont égales à la valeur passée en paramètre
+// et on utilise count() pour compter le nombre de valeurs qui ont passé le filtre
+// - count_collection_iterator prend un slice de HashMap et un Progress et doit retourner le Progess
+// pour cela on utilise la méthode iter() qui retourne un iterateur sur les éléments du slice
+// on utilise ensuite flat_map pour transformer chaque HashMap en un iterateur sur ses valeurs
+// on utilise ensuite filter pour filtrer les valeurs qui sont égales à la valeur passée en paramètre
+// et on utilise count() pour compter le nombre de valeurs qui ont passé le filtre
+// J'ai ajouté une double référence sur les 'val' pour accéder à la valeur sous-jacente
+// mais j'ai hésité avec une autre méthode qui est de référencer &val puis de déréférencer avec *val
 
 #[cfg(test)]
 mod tests {

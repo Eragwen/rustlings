@@ -13,5 +13,6 @@ fn square(num: i32) -> i32 {
     return num * num;
 }
 
+// ! Writeup !
 // Il manquait le mot clé return pour retourner la valeur de num * num 
 // mais possible aussi de juste enlever le ";"

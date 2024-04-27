@@ -20,7 +20,6 @@
 //
 // No hints this time!
 
-// I AM NOT DONE
 
 pub enum Command {
     Uppercase,
@@ -32,11 +31,16 @@ mod my_module {
     use super::Command;
 
     // TODO: Complete the function signature!
-    pub fn transformer(input: ???) -> ??? {
+    pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> {
         // TODO: Complete the output declaration!
-        let mut output: ??? = vec![];
+        let mut output: Vec<String> = vec![];
         for (string, command) in input.iter() {
             // TODO: Complete the function body. You can do it!
+            match command {
+                Command::Uppercase => output.push(string.to_uppercase()),
+                Command::Trim => output.push(string.trim().to_string()),
+                Command::Append(n) => output.push(string.clone() + &"bar".repeat(*n)),
+            }
         }
         output
     }
@@ -45,7 +49,7 @@ mod my_module {
 #[cfg(test)]
 mod tests {
     // TODO: What do we need to import to have `transformer` in scope?
-    use ???;
+    use super::my_module::transformer;
     use super::Command;
 
     #[test]
@@ -62,3 +66,12 @@ mod tests {
         assert_eq!(output[3], "barbarbarbarbarbar");
     }
 }
+
+// ! Writeup !
+// On définit la fonction transformer qui prend en paramètre un vecteur de tuples (String, Command) et qui renvoie un vecteur de chaînes de caractères.
+// Pour chaque tuple, on applique une action à la chaîne de caractères en fonction de la commande associée. On utilise un match pour gérer les différentes variantes de la commande.
+// On définit un enum Command qui représente les différentes actions à appliquer à une chaîne de caractères. On a trois variantes :
+// - Uppercase : Mettre la chaîne en majuscules. Pour cela, on utilise la méthode to_uppercase.
+// - Trim : Supprimer les espaces en début et fin de chaîne. Pour cela, on utilise la méthode trim.
+// - Append : Ajouter "bar" à la fin de la chaîne un certain nombre de fois. Pour cela, on ajoute "bar" et avec la méthode repeat, on répète le mot n fois. L'ajout de "&" devant "bar" permet de convertir le String en &str pour pouvoir utiliser la méthode repeat.
+// On utilise super pour importer le module parent.

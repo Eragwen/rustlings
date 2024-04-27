@@ -9,7 +9,6 @@
 // Execute `rustlings hint errors6` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 use std::num::ParseIntError;
 
@@ -25,15 +24,29 @@ impl ParsePosNonzeroError {
         ParsePosNonzeroError::Creation(err)
     }
     // TODO: add another error conversion function here.
-    // fn from_parseint...
+    fn from_parseint(err: ParseIntError) -> ParsePosNonzeroError {
+        ParsePosNonzeroError::ParseInt(err)
+    }
 }
 
 fn parse_pos_nonzero(s: &str) -> Result<PositiveNonzeroInteger, ParsePosNonzeroError> {
     // TODO: change this to return an appropriate error instead of panicking
     // when `parse()` returns an error.
-    let x: i64 = s.parse().unwrap();
-    PositiveNonzeroInteger::new(x).map_err(ParsePosNonzeroError::from_creation)
+    match s.parse::<i64>() {
+        Ok(num) => PositiveNonzeroInteger::new(num).map_err(ParsePosNonzeroError::from_creation),
+        Err(e) => Err(ParsePosNonzeroError::from_parseint(e)),
+    }
 }
+
+// ! Writeup ! 
+// L'implementation de ParsePosNonzeroError avait besoin de deux fonctions de conversion pour les erreurs CreationError et ParseIntError.
+// Ajout de la fonction from_parseint pour convertir ParseIntError en ParsePosNonzeroError.
+// Modification de la fonction parse_pos_nonzero pour retourner une erreur appropriée au lieu de paniquer lorsque parse() retourne une erreur.
+// Utilisation de new() pour créer une nouvelle instance de PositiveNonzeroInteger, et map_err pour convertir l'erreur CreationError en ParsePosNonzeroError.
+// Utilisation de la fonction from_parseint pour convertir l'erreur ParseIntError en ParsePosNonzeroError.
+// Ajout de match pour s.parse::<i64>() pour gérer les cas où la conversion de s en i64 échoue.
+// Utilisation de Ok(num) pour retourner PositiveNonzeroInteger::new(num) si la conversion réussit.
+// Utilisation de Err(e) pour retourner ParsePosNonzeroError::from_parseint(e) si la conversion échoue.
 
 // Don't change anything below this line.
 

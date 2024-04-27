@@ -15,7 +15,6 @@
 // Execute `rustlings hint hashmaps3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 use std::collections::HashMap;
 
@@ -40,9 +39,22 @@ fn build_scores_table(results: String) -> HashMap<String, Team> {
         // will be the number of goals conceded by team_2, and similarly
         // goals scored by team_2 will be the number of goals conceded by
         // team_1.
+        let team_1 = scores.entry(team_1_name.clone()).or_insert(Team { goals_scored: 0, goals_conceded: 0 });
+        team_1.goals_scored += team_1_score;
+        team_1.goals_conceded += team_2_score;
+        let team_2 = scores.entry(team_2_name.clone()).or_insert(Team { goals_scored: 0, goals_conceded: 0 });
+        team_2.goals_scored += team_2_score;
+        team_2.goals_conceded += team_1_score;
     }
     scores
 }
+// ! Writeup !
+// Pour chaque Team, on crée une entrée dans le HashMap scores. On utilise la méthode entry pour insérer une nouvelle Team si elle n'existe pas déjà. On incrémente ensuite les buts marqués et encaissés pour chaque équipe.
+// Cela permet d'obtenir une référence mutable vers la Team, et de modifier ses champs goals_scored et goals_conceded.
+// Si la Team existe déjà, on récupère une référence mutable vers la Team existante sinon on crée une nouvelle Team avec les valeurs par défaut.
+// Ensuite en fonction de l'équipe qui a marqué le but, on incrémente les buts marqués et encaissés pour chaque équipe : 
+// - Pour l'équipe 1, on incrémente les buts marqués de team_1_score et les buts encaissés de team_2_score.
+// - Pour l'équipe 2, on incrémente les buts marqués de team_2_score et les buts encaissés de team_1_score.
 
 #[cfg(test)]
 mod tests {

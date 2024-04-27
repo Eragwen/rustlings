@@ -25,6 +25,8 @@ fn vec_map(v: &Vec<i32>) -> Vec<i32> {
         element * 2
     }).collect()
 }
+
+// ! Writeup !
 // Vec_loop : ajout de '*' devant element pour dereferencer le mutable et modifier la valeur reelle de l'element
 // Vec_map : Valeur immuable, donc on peut juste retourner la nouvelle valeur 
 
