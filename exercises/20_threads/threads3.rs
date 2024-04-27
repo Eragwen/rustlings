@@ -3,7 +3,6 @@
 // Execute `rustlings hint threads3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 use std::sync::mpsc;
 use std::sync::Arc;
@@ -27,22 +26,34 @@ impl Queue {
 }
 
 fn send_tx(q: Queue, tx: mpsc::Sender<u32>) -> () {
+    let q = Arc::new(q);
+    let q_clone = Arc::clone(&q);
+    let tx_clone = tx.clone();
+    
     thread::spawn(move || {
-        for val in q.first_half {
+        for val in &q_clone.first_half {
             println!("sending {:?}", val);
-            tx.send(val).unwrap();
+            tx_clone.send(*val).unwrap();
             thread::sleep(Duration::from_secs(1));
         }
     });
+    let q_clone2 = Arc::clone(&q);
+    let tx_clone2 = tx.clone();
 
     thread::spawn(move || {
-        for val in q.second_half {
+        for val in &q_clone2.second_half {
             println!("sending {:?}", val);
-            tx.send(val).unwrap();
+            tx_clone2.send(*val).unwrap();
             thread::sleep(Duration::from_secs(1));
         }
     });
 }
+
+// ! Writeup !
+// Le problème ici était que les threads se partageaient la même instance de Queue, 
+// ce qui entraînait des problèmes de concurrence et de propriété.
+// J'ai utilisé Arc pour résoudre le problème, en créant une copie de la queue pour chaque thread
+// je peux partager la propriété de la queue entre eux et traiter les valeurs de manière indépendante.
 
 #[test]
 fn main() {
